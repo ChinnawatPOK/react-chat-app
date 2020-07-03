@@ -1,27 +1,32 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { Component } from "react";
+import User from "./user/User";
+import Post from "./post/Post";
 import "./App.css";
+import { Route, Link } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to
-        </p>
-        <div>pok</div>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    name: "Future Skill",
+  };
+  onNameChange = (name) => {
+    this.setState({ name: name });
+  };
+  render() {
+    const { name } = this.state;
+    return (
+      <div>
+        <div>Hello {name}</div>
+        <div>
+          <Link to="/">Home</Link>
+          <Link to="/users">Users</Link>
+          <Link to="/posts">Posts</Link>
+        </div>
+        <Route path="/users" component={User} />
+        <Route path="/posts" component={Post} />{" "}
+        {/* <User name={name} onNameChange={this.onNameChange} /> */}
+      </div>
+    );
+  }
 }
 
 export default App;
