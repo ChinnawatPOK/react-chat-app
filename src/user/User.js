@@ -9,6 +9,7 @@ class User extends Component {
   //     this.props.onNameChange(event.target.value);
   //   };
   render() {
+    // console.log(this.props.data);
     return (
       <div>
         <table>
@@ -20,18 +21,22 @@ class User extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.data.map((user) => (
-              // วน loop array ควรที key unique
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-              </tr>
-            ))}
+            {this.props.data === undefined ? (
+              <div></div>
+            ) : (
+              this.props.data.map((user) => (
+                // วน loop array ควรที key unique
+                <tr key={user.id}>
+                  <td>{user.id}</td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
     );
   }
 }
-export default withRequest("https://jsonplaceholder.typicode.com/users")(User);
+export default User;
